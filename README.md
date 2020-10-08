@@ -8,7 +8,5 @@ Members :
 
 2.Lee Jia Lee
 
-3. Wang Yuchen
-
-4. Ayush Kumar
+3.Wang Yuchen
 
