@@ -7,41 +7,35 @@ import './App.css';
 
 function App() {
 
-
+  // TO CHANGE ZOOM PART IF CHANGED WEBSITE
   const site = window.location.origin
-  const auth = `https://zoom.us/oauth/authorize?response_type=code&redirect_uri=${site}&client_id=LFnBwJLsSRKhafeNUdYiVw`
+  const auth_link = `https://zoom.us/oauth/authorize?response_type=code&redirect_uri=${site}&client_id=LFnBwJLsSRKhafeNUdYiVw`
   
-
-  function a(){
+  // TO CHANGE
+  const backend_url = "http://localhost:5000"
+  
+  async function get_access_token(){
     let params = new URLSearchParams(document.location.search.substring(1))
     let code = params.get("code")
-
-    const getaccesstoken = `https://zoom.us/oauth/token?grant_type=authorization_code&code=${code}&redirect_uri=${site}`
     
-    var buffer = new Buffer("Basic LFnBwJLsSRKhafeNUdYiVw:MYmxuf7ogBMta0RiXam6bFFPflSCT6A9");
-    let cred = buffer.toString('base64');
+    const data = {"auth_code": code}
 
+    const api_url = `${backend_url}/get-access-token`
 
+    let a = await fetch(api_url, {method:'POST', headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, body: JSON.stringify(data)})
 
-    /*
-    fetch(getaccesstoken, {
-        method: 'POST',
-        headers:{
-          'Authorization': cred,
-          'mode':'cors',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-        }
-      }
-    ).then(function(res){ return res })
-    .then(function(data){ console.log( data ) })
-    */
+    let body = await a.json();
+
+    console.log(body)
+    localStorage.setItem("access-token", body.access_token)
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -53,11 +47,11 @@ function App() {
         >
           Learn React
         </a>
-        <a href={auth}>
-          auth
+        <a href={auth_link}>
+          get_auth_token
         </a>
-        <a onClick={a}>
-          aaa
+        <a onClick={get_access_token}>
+          get_access_token
         </a>
       </header>
     </div>
