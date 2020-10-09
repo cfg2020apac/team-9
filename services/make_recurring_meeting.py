@@ -14,7 +14,14 @@ logger = logging.getLogger(__name__)
 @app.route('/make-recurring-meeting', methods=['POST'])
 def evaluate():
     data = request.get_json()
-    
+    access_token = data.get("access_token")
+    email = data.get("email")
+    headers = {
+        "Content-Type" :"application/json",
+        "Authorization" : "Bearer {}".format(access_token)
+    }
+
+
     request_body = {
         "topic": "For JA meeting",
         "type": 3,
@@ -25,43 +32,38 @@ def evaluate():
         # "password": "string",
         # "agenda": "string",
         "recurrence": {
-            "type": 2,
-            "repeat_interval": 2,
-            "weekly_days": "string",
-            "monthly_day": "integer",
-            "monthly_week": "integer",
-            "monthly_week_day": "integer",
-            "end_times": "integer",
-            "end_date_time": "string [date-time]"
+            "type": 2, #weekly
+            "repeat_interval": 2, # every 2 weeks
+            "weekly_days": "1", # set to monday
+            "end_times": 8, # recur 8 times
         },
         "settings": {
-            "host_video": "boolean",
-            "participant_video": "boolean",
-            "cn_meeting": "boolean",
-            "in_meeting": "boolean",
-            "join_before_host": "boolean",
-            "mute_upon_entry": "boolean",
-            "watermark": "boolean",
-            "use_pmi": "boolean",
-            "approval_type": "integer",
-            "registration_type": "integer",
-            "audio": "string",
-            "auto_recording": "string",
-            "enforce_login": "boolean",
-            "enforce_login_domains": "string",
-            "alternative_hosts": "string",
-            "global_dial_in_countries": [
-            "string"
-            ],
-            "registrants_email_notification": "boolean"
+            "host_video": False,
+            "participant_video": False,
+            "cn_meeting": False,
+            "in_meeting": False,
+            "join_before_host": False,
+            "mute_upon_entry": True,
+            "watermark": False,
+            "use_pmi": False,
+            "approval_type": 0,
+            "registration_type": 1,
+            "audio": "voip",
+            "registrants_email_notification": True
         }
-}
+    }
+
+    url = "https://api.zoom.us/v2/users/{}/meetings".format(email)
+    resp = requests.post(url, headers=headers).json()
+
+    result = {
+        "start_url" :resp.get("start_url"),
+        "join_url" : resp.get("join_url")
+    }
+    return jsonify(result)
 
 
-    # inputValue = data.get("input");
-    # result = inputValue * inputValue
-    # logging.info("My result :{}".format(result))
-    return json.dumps(os.environ.get("ZOOM_JWT"));
+
 
 
 if __name__ == "__main__":
