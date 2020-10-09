@@ -53,15 +53,12 @@ def make_recurring():
         "type": 3,
         "start_time": "{}".format(datetime.datetime.now()),
         "duration": 60,
-        # "schedule_for": "string",
         "timezone": "Asia/Hong_Kong",
-        # "password": "string",
-        # "agenda": "string",
         "recurrence": {
-            "type": 2, #weekly
-            "repeat_interval": 2, # every 2 weeks
-            "weekly_days": "1", # set to monday
-            "end_times": 8, # recur 8 times
+            "type": 2, 
+            "repeat_interval": 2, 
+            "weekly_days": "1", 
+            "end_times": 8, 
         },
         "settings": {
             "host_video": False,
@@ -80,7 +77,7 @@ def make_recurring():
     }
 
     url = "https://api.zoom.us/v2/users/{}/meetings".format(email)
-    resp = requests.post(url, headers=headers).json()
+    resp = requests.post(url, data=json.dumps(request_body), headers=headers).json()
 
     result = {
         "start_url" :resp.get("start_url"),
@@ -105,12 +102,18 @@ def get_attendance():
 
 
     url = "https://api.zoom.us/v2/report/meetings/{}/participants".format(meetingId)
-    resp = requests.post(url, params=params, headers=headers).json()
+    resp = requests.post(url, params=params, headers=headers)
+    
+    print(resp.content)
 
-    result = {
-        "participants" : resp.get("participants")
-    }
-    return jsonify(result)
+    try:
+        json = resp.json()
+        result = {
+            "participants" : resp.get("participants")
+        }
+        return jsonify(result)
+    except:
+        return jsonify({"message": "You need a pro account/ Error occurred"})
 
 
 
