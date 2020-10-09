@@ -29,9 +29,13 @@ export default function SideDrawer() {
     const classes = useStyles()
     const history = useHistory();
 
-    const routeChange = () => {
-        let path = `signin`;
+    const signoutNavigate = () => {
+        let path = 'signin/';
         history.push(path);
+    }
+    const profileNavigate = () => {
+        let path = 'studentprofile/'
+        history.push(path)
     }
     const [sideDrawerIsVisible, setSideDrawerIsVisible] = useState(false)
 
@@ -51,7 +55,7 @@ export default function SideDrawer() {
         >
             <List>
                 {['Notifications', 'Profile', 'Logout'].map((text) => (
-                    <ListItem button key={text} onClick={text === 'Notifications' ? () => { } : text === 'Profile' ? () => { } : routeChange}>
+                    <ListItem button key={text} onClick={text === 'Notifications' ? () => { } : text === 'Profile' ? profileNavigate : signoutNavigate}>
                         <ListItemIcon className={classes.icon} >{text === 'Notifications' ? <Badge badgeContent={4} color="error"><NotificationsIcon /></Badge> : text === 'Profile' ? <AccountBoxIcon /> : <VpnKeyIcon />}</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>

@@ -71,7 +71,7 @@ export default function Signin() {
     const history = useHistory();
 
     const routeChange = () => {
-        let path = `signin`;
+        let path = 'signin/';
         history.push(path);
     }
     return (

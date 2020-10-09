@@ -78,9 +78,14 @@ export default function ToolbarWrapper() {
     const classes = useStyles()
     const history = useHistory();
 
-    const routeChange = () => {
-        let path = `signin`;
+    const signoutNavigate = () => {
+        let path = '/signin';
         history.push(path);
+    }
+
+    const profileNavigate = () => {
+        let path = '/studentprofile'
+        history.push(path)
     }
     return (
         <AppBar className={classes.appbar} position='sticky' elevation={0}>
@@ -92,8 +97,8 @@ export default function ToolbarWrapper() {
                             <NotificationsIcon />
                         </Badge>
                     </Button>
-                    <Button onClick={() => { }}>Profile</Button>
-                    <Button onClick={routeChange}>Logout</Button>
+                    <Button onClick={profileNavigate}>Profile</Button>
+                    <Button onClick={signoutNavigate}>Logout</Button>
                 </Box>
                 <Box className={classes.mobileBox}>
                     <Sidedrawer />

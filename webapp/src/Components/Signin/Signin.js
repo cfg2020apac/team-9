@@ -70,9 +70,34 @@ export default function Signin() {
     };
     const history = useHistory();
 
-    const signinRouteChange = () => {
-        let path = `signup/`;
+    const signupRouteChange = () => {
+        let path = '/signup';
         history.push(path);
+    }
+
+    const studentRouteChange = () => {
+        let path = '/studenthomepage';
+        history.push(path);
+    }
+
+    const volunteerRouteChange = () => {
+        let path = '/volunteerhomepage';
+        history.push(path);
+    }
+
+    const adminRouteChange = () => {
+        let path = '/adminhomepage';
+        history.push(path);
+    }
+
+    const onSignin = () => {
+        if (value === 'student') {
+            studentRouteChange()
+        } else if (value === 'voluteer') {
+            volunteerRouteChange()
+        } else {
+            adminRouteChange()
+        }
     }
 
     return (
@@ -128,6 +153,7 @@ export default function Signin() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={onSignin}
                         >
                             Sign In
             </Button>
@@ -138,7 +164,7 @@ export default function Signin() {
                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2" onClick={signinRouteChange}>
+                                <Link href="#" variant="body2" onClick={signupRouteChange}>
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

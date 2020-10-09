@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Logo() {
     const history = useHistory()
     const navigateLomotifHandler = () => {
-        history.push('/')
+        history.push('/studenthomepage')
     }
 
     const classes = useStyles()
