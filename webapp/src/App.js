@@ -22,15 +22,47 @@ function App() {
 
     const api_url = `${backend_url}/get-access-token`
 
-    let a = await fetch(api_url, {method:'POST', headers: {
+    let res = await fetch(api_url, {method:'POST', headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     }, body: JSON.stringify(data)})
 
-    let body = await a.json();
+    let body = await res.json();
 
     console.log(body)
     localStorage.setItem("access-token", body.access_token)
+  }
+
+  async function make_recurring_meeting(){
+    let accesstoken = localStorage.getItem("access-token")
+    let email = "jiale_lee@mymail.sutd.edu.sg"
+
+    const data = {"access_token": accesstoken, "email": email}
+    const api_url = `${backend_url}/make-recurring-meeting`
+
+    let res = await fetch(api_url, {method:'POST', headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, body: JSON.stringify(data)})
+
+    let body = await res.json();
+    console.log(body)
+  }
+
+  async function get_attendance(){
+    let accesstoken = localStorage.getItem("access-token")
+    let meetingId = 12345
+
+    const data = {"access_token": accesstoken, "meetingId": meetingId}
+    const api_url = `${backend_url}/get-attendance`
+
+    let res = await fetch(api_url, {method:'POST', headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }, body: JSON.stringify(data)})
+
+    let body = await res.json();
+    console.log(body)
   }
 
   return (
@@ -52,6 +84,12 @@ function App() {
         </a>
         <a onClick={get_access_token}>
           get_access_token
+        </a>
+        <a onClick={make_recurring_meeting}>
+          make_recurring_meeting
+        </a>
+        <a onClick={get_attendance}>
+          get_attendance
         </a>
       </header>
     </div>
