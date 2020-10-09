@@ -2,7 +2,7 @@
 
 If you are a member of team-9 reach out to me on Slack (Jeswin Jose) as we would like to create a group for team discussions b4 the event !
 
-Members : 
+Members :
 
 1.Jeswin
 

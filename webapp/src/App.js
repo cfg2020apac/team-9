@@ -1,9 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+import Signin from './Components/Signin/Signin'
+import Signup from './Components/Signup/Signup'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 
 function App() {
+
 
   const site = window.location.origin
   const auth = `https://zoom.us/oauth/authorize?response_type=code&redirect_uri=${site}&client_id=LFnBwJLsSRKhafeNUdYiVw`
