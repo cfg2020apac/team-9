@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Signin() {
+export default function Signup() {
     const classes = useStyles();
     const [value, setValue] = useState('student');
     const handleChange = (event) => {
@@ -70,10 +70,36 @@ export default function Signin() {
     };
     const history = useHistory();
 
-    const routeChange = () => {
-        let path = 'signin/';
+    const signinRouteChange = () => {
+        let path = '/signin';
         history.push(path);
     }
+
+    const studentRouteChange = () => {
+        let path = '/studenthomepage';
+        history.push(path);
+    }
+
+    const volunteerRouteChange = () => {
+        let path = '/volunteerhomepage';
+        history.push(path);
+    }
+
+    const adminRouteChange = () => {
+        let path = '/adminhomepage';
+        history.push(path);
+    }
+
+    const onSignup = (pathValue) => {
+        if (value === 'student') {
+            studentRouteChange()
+        } else if (value === 'volunteer') {
+            volunteerRouteChange()
+        } else {
+            adminRouteChange()
+        }
+    }
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -127,6 +153,7 @@ export default function Signin() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={() => onSignup(value)}
                         >
                             Sign Up
             </Button>
@@ -137,7 +164,7 @@ export default function Signin() {
                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2" onClick={routeChange}>
+                                <Link href="#" variant="body2" onClick={signinRouteChange}>
                                     {"Already have an account? Sign In"}
                                 </Link>
                             </Grid>

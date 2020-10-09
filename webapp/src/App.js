@@ -6,6 +6,7 @@ import StudentHomePage from './Components/StudentPage/StudentHomePage';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Background from './Assets/bg.jpg';
 import StudentProfile from './Components/StudentPage/Profile/Profile'
+import VolunteerHomePage from './Components/VolunteerPage/VolunteerHomePage'
 import './App.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +27,8 @@ export default function App() {
       <Route path='/signup' exact render={() => <Signup />} />
       <Route path='/studenthomepage' exact render={() => <StudentHomePage />} />
       <Route path='/studentprofile' exact render={() => <StudentProfile />} />
-      <Redirect to='/signin' />
+      <Route path='/volunteerhomepage' exact render={() => <VolunteerHomePage />} />
+      {/* <Redirect to='/signin' /> */}
     </Switch>
   )
   return (

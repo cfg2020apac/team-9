@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -71,29 +71,30 @@ export default function Signin() {
     const history = useHistory();
 
     const signupRouteChange = () => {
-        let path = '/signup';
+        const path = '/signup';
         history.push(path);
     }
 
     const studentRouteChange = () => {
-        let path = '/studenthomepage';
+        const path = '/studenthomepage';
         history.push(path);
     }
 
     const volunteerRouteChange = () => {
-        let path = '/volunteerhomepage';
+        const path = '/volunteerhomepage';
         history.push(path);
     }
 
     const adminRouteChange = () => {
-        let path = '/adminhomepage';
+        const path = '/adminhomepage';
         history.push(path);
     }
 
-    const onSignin = () => {
-        if (value === 'student') {
+    const onSignin = (pathValue) => {
+        console.log(pathValue)
+        if (pathValue === 'student') {
             studentRouteChange()
-        } else if (value === 'voluteer') {
+        } else if (pathValue === 'volunteer') {
             volunteerRouteChange()
         } else {
             adminRouteChange()
@@ -153,7 +154,7 @@ export default function Signin() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={onSignin}
+                            onClick={() => onSignin(value)}
                         >
                             Sign In
             </Button>
