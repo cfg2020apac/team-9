@@ -1,7 +1,8 @@
 Team*.zip
+*.env
 *.pem
 *.ppk
 *.crt
 *.key
 *.ovpn
-services/virt/*
+services/recurring-zoom-service/virt/*
