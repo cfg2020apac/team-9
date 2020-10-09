@@ -12,6 +12,8 @@ app = Flask(__name__)
 CORS(app)
 logger = logging.getLogger(__name__)
 
+front_end_url = "https://cfg-2020.web.app"
+
 @app.route('/get-access-token', methods=['POST'])
 def get_access_token():
     data = request.get_json();
@@ -23,7 +25,7 @@ def get_access_token():
     params = {
         "grant_type" : "authorization_code",
         "code" : "{}".format(auth_code),
-        "redirect_uri" : "https://cfg-2020.web.app",
+        "redirect_uri" : front_end_url,
     }
     
     auth = "{}:{}".format(os.environ.get("CLIENT_ID"), os.environ.get("SECRET"))
