@@ -12,8 +12,34 @@ app = Flask(__name__)
 CORS(app)
 logger = logging.getLogger(__name__)
 
+@app.route('/get-access-token', methods=['POST'])
+def get_access_token():
+    data = request.get_json();
+    logging.info("data sent for evaluation {}".format(data))
+
+    auth_code = data.get("auth_code")
+    email = data.get("email") # may need to change to dummy 
+
+    params = {
+        "grant_type" : "authorization_code",
+        "code" : "{}".format(auth_code),
+        "redirect_uri" : "https://cfg-2020.web.app",
+    }
+    
+    auth = "{}:{}".format(os.environ.get("CLIENT_ID"), os.environ.get("SECRET"))
+    auth_encoded = base64.b64encode(auth.encode('ascii')).decode('ascii')
+    
+    
+    headers = {
+        "Authorization" : "Basic {}".format(auth_encoded)
+    }
+
+    resp = requests.post("https://zoom.us/oauth/token", params=params, headers=headers).json()
+    
+    return resp
+
 @app.route('/make-recurring-meeting', methods=['POST'])
-def evaluate():
+def make_recurring():
     data = request.get_json()
     access_token = data.get("access_token")
     email = data.get("email")
@@ -21,7 +47,6 @@ def evaluate():
         "Content-Type" :"application/json",
         "Authorization" : "Bearer {}".format(access_token)
     }
-
 
     request_body = {
         "topic": "For JA meeting",
@@ -63,6 +88,29 @@ def evaluate():
     }
     return jsonify(result)
 
+@app.route('/get-attendance', methods=['POST'])
+def get_attendance():
+    data = request.get_json()
+    access_token = data.get("access_token")
+    meetingId = data.get("meetingId")
+    
+    params = {
+        "page_count" : 30 
+    }
+
+    headers = {
+        "Content-Type" :"application/json",
+        "Authorization" : "Bearer {}".format(access_token)
+    }
+
+
+    url = "https://api.zoom.us/v2/report/meetings/{}/participants".format(meetingId)
+    resp = requests.post(url, params=params, headers=headers).json()
+
+    result = {
+        "participants" : resp.get("participants")
+    }
+    return jsonify(result)
 
 
 
