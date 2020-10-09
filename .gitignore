@@ -1,6 +1,8 @@
 Team*.zip
+*.env
 *.pem
 *.ppk
 *.crt
 *.key
 *.ovpn
+services/virt/*
