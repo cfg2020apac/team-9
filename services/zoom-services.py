@@ -5,12 +5,13 @@ import requests
 import base64
 import datetime
 from flask_cors import CORS
-
 from flask import Flask, request, jsonify;
 
 app = Flask(__name__)
 CORS(app)
 logger = logging.getLogger(__name__)
+
+front_end_url = "https://cfg-2020.web.app"
 
 @app.route('/get-access-token', methods=['POST'])
 def get_access_token():
@@ -23,7 +24,7 @@ def get_access_token():
     params = {
         "grant_type" : "authorization_code",
         "code" : "{}".format(auth_code),
-        "redirect_uri" : "https://cfg-2020.web.app",
+        "redirect_uri" : front_end_url,
     }
     
     auth = "{}:{}".format(os.environ.get("CLIENT_ID"), os.environ.get("SECRET"))
@@ -116,10 +117,5 @@ def get_attendance():
         return jsonify({"message": "You need a pro account/ Error occurred"})
 
 
-
-
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-
-
-
