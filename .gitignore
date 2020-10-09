@@ -6,3 +6,6 @@ Team*.zip
 *.key
 *.ovpn
 services/virt/*
+firestore-service/virt/*
+firestore-service/key.json
+*.DS_Store
