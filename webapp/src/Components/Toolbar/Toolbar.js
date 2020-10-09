@@ -5,8 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import Badge from '@material-ui/core/Badge';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+// import Badge from '@material-ui/core/Badge';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useHistory } from "react-router-dom";
 import Sidedrawer from './Sidedrawer'
 
@@ -92,11 +92,11 @@ export default function ToolbarWrapper() {
             <Toolbar className={classes.toolbar}>
                 <Logo className={classes.logo} />
                 <Box className={classes.desktopBox} >
-                    <Button>
+                    {/* <Button>
                         <Badge badgeContent={4} color="error">
                             <NotificationsIcon />
                         </Badge>
-                    </Button>
+                    </Button> */}
                     <Button onClick={profileNavigate}>Profile</Button>
                     <Button onClick={signoutNavigate}>Logout</Button>
                 </Box>

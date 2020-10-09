@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Event1 from '../../Assets/volunteerevent1.png'
 import Event2 from '../../Assets/volunteerevent2.png'
 import Event3 from '../../Assets/volunteerevent3.png'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,20 +25,27 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 330,
         height: '500px',
         backgroundColor: '#F2FFF4',
-        borderRadius: '16px'
+        borderRadius: '16px',
+        '&:hover': {
+            cursor: 'pointer'
+        }
     },
 }))
 
 export default function Events() {
-
-    const classes = useStyles()
+    const history = useHistory();
+    const classes = useStyles();
+    const registrationNav = () => {
+        const path = '/registration';
+        history.push(path);
+    }
     return (
         <div className={classes.root}>
             <Typography variant="h4">Upcoming Events</Typography>
             <Grid className={classes.root} container justify="center" spacing={4} >
                 {['Event1', 'Event2', 'Event3'].map((value) => (
                     <Grid key={value} item data-aos='fade'>
-                        <Card className={classes.card}>
+                        <Card className={classes.card} onClick={registrationNav}>
                             <CardMedia
                                 component="img"
                                 alt="CardImage"

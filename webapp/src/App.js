@@ -3,10 +3,15 @@ import Signin from './Components/Signin/Signin';
 import Signup from './Components/Signup/Signup';
 import { makeStyles } from '@material-ui/styles';
 import StudentHomePage from './Components/StudentPage/StudentHomePage';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Background from './Assets/bg.jpg';
 import StudentProfile from './Components/StudentPage/Profile/Profile'
 import VolunteerHomePage from './Components/VolunteerPage/VolunteerHomePage'
+import AdminHomePage from './Components/AdminPage/AdminHomePage';
+import StudentForms from './Components/AdminPage/StudentForms/StudentForms'
+import VolunteerForms from './Components/AdminPage/VolunteerForms/VolunteerForms'
+import Registration from './Components/Registration/Registration'
+
 import './App.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +33,10 @@ export default function App() {
       <Route path='/studenthomepage' exact render={() => <StudentHomePage />} />
       <Route path='/studentprofile' exact render={() => <StudentProfile />} />
       <Route path='/volunteerhomepage' exact render={() => <VolunteerHomePage />} />
-      {/* <Redirect to='/signin' /> */}
+      <Route path='/adminhomepage' exact render={() => <AdminHomePage />} />
+      <Route path='/studentforms' exact render={() => <StudentForms />} />
+      <Route path='/volunteerforms' exact render={() => <VolunteerForms />} />
+      <Route path='/registration' exact render={() => <Registration />} />
     </Switch>
   )
   return (

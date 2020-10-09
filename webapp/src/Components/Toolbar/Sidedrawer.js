@@ -54,9 +54,9 @@ export default function SideDrawer() {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                {['Notifications', 'Profile', 'Logout'].map((text) => (
-                    <ListItem button key={text} onClick={text === 'Notifications' ? () => { } : text === 'Profile' ? profileNavigate : signoutNavigate}>
-                        <ListItemIcon className={classes.icon} >{text === 'Notifications' ? <Badge badgeContent={4} color="error"><NotificationsIcon /></Badge> : text === 'Profile' ? <AccountBoxIcon /> : <VpnKeyIcon />}</ListItemIcon>
+                {['Profile', 'Logout'].map((text) => (
+                    <ListItem button key={text} onClick={text === 'Profile' ? profileNavigate : signoutNavigate}>
+                        <ListItemIcon className={classes.icon} >{text === 'Profile' ? <AccountBoxIcon /> : <VpnKeyIcon />}</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
