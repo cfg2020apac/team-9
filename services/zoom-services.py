@@ -80,7 +80,7 @@ def make_recurring():
     }
 
     url = "https://api.zoom.us/v2/users/{}/meetings".format(email)
-    resp = requests.post(url, headers=headers).json()
+    resp = requests.post(url, data=request_body, headers=headers).json()
 
     result = {
         "start_url" :resp.get("start_url"),
