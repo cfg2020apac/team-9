@@ -65,10 +65,11 @@ export default function Signin() {
     };
     const history = useHistory();
 
-    const routeChange = () => {
+    const signinRouteChange = () => {
         let path = `signup/`;
         history.push(path);
     }
+
     return (
         <Grid container component="main" className={classes.root}>
             <CssBaseline />
@@ -126,13 +127,13 @@ export default function Signin() {
                             Sign In
             </Button>
                         <Grid container>
-                            <Grid item xs>
+                            <Grid item xs style={{ textAlign: 'left' }}>
                                 <Link href="#" variant="body2">
                                     Forgot password?
                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2" onClick={routeChange}>
+                                <Link href="#" variant="body2" onClick={signinRouteChange}>
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

@@ -126,8 +126,8 @@ export default function Signin() {
                             Sign Up
             </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
+                            <Grid item xs style={{ textAlign: 'left' }}>
+                                <Link href="#" variant="body2" >
                                     Forgot password?
                 </Link>
                             </Grid>
