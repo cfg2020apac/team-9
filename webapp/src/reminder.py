@@ -43,7 +43,7 @@ def send_notif(instructor_email, student_email):
                                     }
                             ],
                             "Subject": "Meeting Reminder",
-                            "TextPart": "This is a reminder to attend a program you have registered." + "\n" + "Time: 3.30pm-4.30pm"
+                            "TextPart": "This is a reminder to attend a program you have registered." + "\n" + "Date: 26 April 2020" + "\n" + "Time: 3.30pm-4.30pm"
                     }
             ]
     }
@@ -74,6 +74,7 @@ def remind(year, month, date, hour, minute, instructor_email, student_email):
 @app.route("/remind_now/<string:instructor_email>/<string:student_email>", methods=["GET"])
 def remind_now(instructor_email, student_email):
     send_notif(instructor_email, student_email)
+    return "200"
 
 # Hardcoded meeting details
 meeting_year = 2020
@@ -87,8 +88,8 @@ instructor_email = os.getenv('INSTRUCTOR_EMAIL')
 student_email = os.getenv('STUDENT_EMAIL')
 
 # for testing
-remind(meeting_year, meeting_date, meeting_month, meeting_hour, meeting_minute, instructor_email, student_email)
-# remind_now(instructor_email, student_email)
+# remind(meeting_year, meeting_date, meeting_month, meeting_hour, meeting_minute, instructor_email, student_email)
+remind_now(instructor_email, student_email)
 
 if __name__ == "__main__":
 	app.run(port=5001, debug=True)
