@@ -10,8 +10,6 @@ import os
 app = Flask(__name__)
 
 import os
-# from dotenv import load_dotenv
-# load_dotenv()
 
 # Returns the difference in minutes
 def get_minutes_diff(meeting_datetime, current_datetime):
@@ -54,9 +52,9 @@ def send_notif(instructor_email, student_email):
     print(result.json())
 
 
-# main function
-@app.route("/reminder/<int:year>/<int:month>/<int:date>/<int:minute>/<string:instructor_email>/<string:student_email>", methods=["GET"])
-def send(year, month, date, hour, minute, instructor_email, student_email):
+# auto-remind 24 hours and 1 hour before meeting time
+@app.route("/remind/<int:year>/<int:month>/<int:date>/<int:minute>/<string:instructor_email>/<string:student_email>", methods=["GET"])
+def remind(year, month, date, hour, minute, instructor_email, student_email):
     meeting_datetime = datetime(year, month, date, hour, minute)
     current_datetime = datetime.now()
     minutes = get_minutes_diff(meeting_datetime, current_datetime)
@@ -72,11 +70,16 @@ def send(year, month, date, hour, minute, instructor_email, student_email):
     # for demo, test send email working
     # send_notif(instructor_email, student_email)
 
+# remind when user (Admin/Volunteer) wants to remind
+@app.route("/remind_now/<string:instructor_email>/<string:student_email>", methods=["GET"])
+def remind_now(instructor_email, student_email):
+    send_notif(instructor_email, student_email)
+
 # Hardcoded meeting details
 meeting_year = 2020
 meeting_month = 10
 meeting_date = 10
-meeting_hour = 2
+meeting_hour = 15
 meeting_minute = 30
 
 # Hardcoded emails for testing
@@ -84,7 +87,8 @@ instructor_email = os.getenv('INSTRUCTOR_EMAIL')
 student_email = os.getenv('STUDENT_EMAIL')
 
 # for testing
-send(meeting_year, meeting_date, meeting_month, meeting_hour, meeting_minute, instructor_email, student_email)
+remind(meeting_year, meeting_date, meeting_month, meeting_hour, meeting_minute, instructor_email, student_email)
+# remind_now(instructor_email, student_email)
 
 if __name__ == "__main__":
 	app.run(port=5001, debug=True)
