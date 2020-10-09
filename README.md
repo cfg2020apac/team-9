@@ -10,6 +10,6 @@ Members :
 
 3.Wang Yuchen
 
-4. Zhang Yuanyu (Freddy)
+4.Zhang Yuanyu (Freddy)
 
 5.Ayush Kumar
