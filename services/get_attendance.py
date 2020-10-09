@@ -4,10 +4,12 @@ import os
 import requests
 import base64
 import datetime
+from flask_cors import CORS
 
 from flask import Flask, request, jsonify;
 
 app = Flask(__name__)
+CORS(app)
 
 logger = logging.getLogger(__name__)
 
