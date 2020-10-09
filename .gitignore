@@ -5,4 +5,4 @@ Team*.zip
 *.crt
 *.key
 *.ovpn
-services/recurring-zoom-service/virt/*
+services/virt/*
