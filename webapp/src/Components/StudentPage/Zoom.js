@@ -8,13 +8,17 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from '@material-ui/core/Avatar'
 import Zoom from '../../Assets/zoom.png'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '1440px',
         textAlign: 'center',
         margin: 'auto',
-        marginTop: '40px'
+        marginTop: '40px',
+        [theme.breakpoints.down("xs")]: {
+            width: 'auto',
+            padding: '0px 23px'
+        },
     },
     list: {
         overflow: 'auto',
@@ -26,7 +30,10 @@ const useStyles = makeStyles({
         borderRadius: '8px',
         backgroundColor: 'white',
         marginBottom: '16px',
-        height: '80px'
+        height: '80px',
+        [theme.breakpoints.down("xs")]: {
+            height: '90px'
+        },
     },
     avatar: {
         width: '50px',
@@ -36,7 +43,7 @@ const useStyles = makeStyles({
         color: 'black',
         textAlign: 'left',
     },
-})
+}))
 
 export default function Coursemology() {
     const classes = useStyles()

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
@@ -9,13 +9,16 @@ import Event1 from '../../Assets/event1.png'
 import Event2 from '../../Assets/event2.png'
 import Event3 from '../../Assets/event3.png'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '1440px',
         textAlign: 'center',
         margin: 'auto',
-        marginTop: '40px'
+        marginTop: '40px',
+        [theme.breakpoints.down("xs")]: {
+            width: '100%',
+        },
     },
     card: {
         maxWidth: 330,
@@ -23,7 +26,7 @@ const useStyles = makeStyles({
         backgroundColor: '#F2FFF4',
         borderRadius: '16px'
     },
-})
+}))
 
 export default function Events() {
 

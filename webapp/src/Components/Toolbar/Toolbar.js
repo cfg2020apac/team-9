@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Logo from './Logo';
+import Logo from '../StudentPage/Logo';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { useHistory } from "react-router-dom";
+import Sidedrawer from './Sidedrawer'
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
@@ -19,8 +20,9 @@ const useStyles = makeStyles((theme) => ({
         right: '0',
         textAlign: 'center',
         zIndex: '1301',
-        [theme.breakpoints.down("md")]: {
+        [theme.breakpoints.down("xs")]: {
             width: '100%',
+            // background: 'white'
         },
     },
     toolbar: {
@@ -54,7 +56,22 @@ const useStyles = makeStyles((theme) => ({
             margin: '0px 16px'
         },
         marginRight: '21px',
+        [theme.breakpoints.only("xs")]: {
+            display: 'none',
+        },
     },
+    mobileBox: {
+        display: 'inline-flex',
+        width: '60%',
+        justifyContent: 'flex-end',
+        '& .MuiButton-root': {
+            textTransform: 'none',
+        },
+        marginLeft: 'auto',
+        [theme.breakpoints.up("sm")]: {
+            display: 'none',
+        },
+    }
 }))
 
 export default function ToolbarWrapper() {
@@ -72,11 +89,14 @@ export default function ToolbarWrapper() {
                 <Box className={classes.desktopBox} >
                     <Button>
                         <Badge badgeContent={4} color="error">
-                            <NotificationsIcon color="black" />
+                            <NotificationsIcon />
                         </Badge>
                     </Button>
                     <Button onClick={() => { }}>Profile</Button>
-                    <Button color="#299C3C" onClick={routeChange}>Logout</Button>
+                    <Button onClick={routeChange}>Logout</Button>
+                </Box>
+                <Box className={classes.mobileBox}>
+                    <Sidedrawer />
                 </Box>
             </Toolbar>
         </AppBar>

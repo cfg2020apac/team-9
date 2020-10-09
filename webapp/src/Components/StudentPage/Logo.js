@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     iconButton: {
-        marginLeft: '25px'
+        marginLeft: '0px'
     },
     fullIcon: {
         height: '100%',
