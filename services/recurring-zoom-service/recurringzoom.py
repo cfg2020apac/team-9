@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 logger = logging.getLogger(__name__)
 
+@app.route('/get-access-token', methods=['POST'])
 def evaluate():
     data = request.get_json();
     logging.info("data sent for evaluation {}".format(data))
