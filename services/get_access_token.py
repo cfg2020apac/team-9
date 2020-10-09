@@ -38,13 +38,6 @@ def evaluate():
     return resp
 
 
-
-    # inputValue = data.get("input");
-    # result = inputValue * inputValue
-    # logging.info("My result :{}".format(result))
-    return json.dumps(os.environ.get("ZOOM_JWT"));
-
-
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
 

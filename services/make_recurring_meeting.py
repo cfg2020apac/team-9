@@ -13,6 +13,8 @@ logger = logging.getLogger(__name__)
 
 @app.route('/make-recurring-meeting', methods=['POST'])
 def evaluate():
+    data = request.get_json()
+    
     request_body = {
         "topic": "For JA meeting",
         "type": 3,
