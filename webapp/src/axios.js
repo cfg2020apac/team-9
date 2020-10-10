@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const instance = axios.create({
-    baseURL: `https://us-central1-cfg-backend.cloudfunctions.net/api/`
+    baseURL: `${process.env.REACT_APP_ENDPOINT}`
 });
 
 export default instance;

@@ -3,7 +3,7 @@ import Signin from './Components/Signin/Signin';
 import Signup from './Components/Signup/Signup';
 import { makeStyles } from '@material-ui/styles';
 import StudentHomePage from './Components/StudentPage/StudentHomePage';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Background from './Assets/bg.jpg';
 import StudentProfile from './Components/StudentPage/Profile/Profile'
 import VolunteerHomePage from './Components/VolunteerPage/VolunteerHomePage'
@@ -37,6 +37,7 @@ export default function App() {
       <Route path='/studentforms' exact render={() => <StudentForms />} />
       <Route path='/volunteerforms' exact render={() => <VolunteerForms />} />
       <Route path='/registration' exact render={() => <Registration />} />
+      <Redirect to='/signin' />
     </Switch>
   )
   return (
